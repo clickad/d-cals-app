@@ -9,6 +9,7 @@ export interface Tile {
   font_color: string;
   description: string;
   link: string;
+  desc_color: string;
 }
 
 @Component({
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit {
       color: '#645f5f', 
       icon: "fastfood", 
       font_color: "#999595", 
+      desc_color: '#3c3c3c',
       description: "Search for Food and get Nutritions data."
     },
     {
@@ -37,6 +39,7 @@ export class HomeComponent implements OnInit {
       color: '#756c6c', 
       icon: "pool", 
       font_color: "#a59696", 
+      desc_color: '#414141',
       description: "Search for Exercises by Categories."
     },
     {
@@ -46,7 +49,8 @@ export class HomeComponent implements OnInit {
       rows: 2, 
       color: '#957979', 
       icon: "track_changes", 
-      font_color: "#b39999", 
+      font_color: "#b99f9f", 
+      desc_color: '#464646',
       description: "Check your Day intake of Calories."
     },
     {
@@ -57,6 +61,7 @@ export class HomeComponent implements OnInit {
       color: '#a58e8e', 
       icon: "pie_chart", 
       font_color: "#c9b3b3", 
+      desc_color: '#464646',
       description: "Calories a person needs to consume each day."
     },
     {
@@ -67,6 +72,7 @@ export class HomeComponent implements OnInit {
       color: '#a58a7b', 
       icon: "pie_chart", 
       font_color: "#c5aaab", 
+      desc_color: '#464646',
       description: "Computes ideal bodyweight ranges."
     },
     {
@@ -77,6 +83,7 @@ export class HomeComponent implements OnInit {
       color: '#b19a87', 
       icon: "pie_chart", 
       font_color: "#d1baa7", 
+      desc_color: '#464646',
       description: "BMI value and corresponding weight status."
     }
   ];

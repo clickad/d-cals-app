@@ -1,9 +1,4 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-a, a:active, a:visited{
-    color: #fff;
-    text-decoration: none;
-}
+@import '@angular/material/prebuilt-themes/purple-green.css';
 
 html{
     height: 100%
@@ -14,10 +9,15 @@ body{
     background-color: #464646;
     display: grid;
     align-content: center;
-    height: 100%;
+    min-height: 100%;
     margin:0;
     padding: 0;
     color: #bbb;
+}
+
+a, a:active, a:visited{
+    color: #fff;
+    text-decoration: none;
 }
 
 h1,h2,h3,h4,h5,h6,p{
@@ -29,8 +29,6 @@ h1,h2,h3,h4,h5,h6,p{
     width: 100%;
     height: 100%;
     padding: 20px 0;
-    display: grid;
-    justify-content: center;
 }
 
 .main-container .back-button {
@@ -46,3 +44,64 @@ h1,h2,h3,h4,h5,h6,p{
 .page-title{
     color: #957979;
 }
+
+.page-subtitle {
+    margin-bottom: 20px;
+}
+
+.mat-card-header-text,
+.input-full-width{
+    width: 100%;
+}
+
+.mat-card-title,
+.mat-card-actions,
+.mat-card-content{
+    text-align: center;
+}
+
+.mat-card .mat-card-content{
+    display: grid;
+    justify-content: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.radio-margin {
+    margin: 0 10px;
+}
+
+/*Angular theme modification*/
+.mat-custom-primary{
+    background-color: #957979;
+    color: #eee;
+}
+
+.mat-form-field-wrapper .mat-input-element {
+    caret-color: #957979 !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label{
+    color: #957979 !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple,
+.mat-radio-button.mat-accent .mat-radio-inner-circle, 
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), 
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, 
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple  {
+    background-color: #957979 !important;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #957979 !important;
+}
+/*End of Angular theme modification*/

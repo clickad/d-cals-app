@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-bmi-calculator',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BmiCalculatorComponent implements OnInit {
 
+  public title: string = "BMI Calculator";
+  public subtitle: string = "The Body Mass Index (BMI) Calculator can be used to calculate BMI value and corresponding weight status.";
+  public result: string;
+  formdata: any;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.formdata = new FormGroup({
+      height: new FormControl(
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.pattern("^[1-9][0-9]*$")
+        ])
+      ),
+      weight: new FormControl(
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.pattern("^[1-9][0-9]*$")
+        ])
+      )
+    });
+  }
+  calculate(data): void {
+    this.result = (data.weight / Math.pow(data.height / 100, 2)).toFixed(2);
   }
 
 }
