@@ -1,0 +1,9 @@
+<div class="home-container">
+    <a class="home-nav-link" routerLink="/{{tile.link}}" *ngFor="let tile of tiles">
+        <div class="home-nav-item"  [style.background]="tile.color">
+            <span [style.color]="tile.font_color">{{tile.text}}</span>
+            <div class="home-nav-desc">{{tile.description}}</div>
+            <mat-icon aria-hidden="false" aria-label="Icon" class="home-nav-icon">{{tile.icon}}</mat-icon>
+        </div>
+    </a>
+</div>
