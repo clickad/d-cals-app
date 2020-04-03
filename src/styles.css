@@ -12,7 +12,7 @@ body{
     min-height: 100%;
     margin:0;
     padding: 0;
-    color: #bbb;
+    color: #aaa;
 }
 
 a, a:active, a:visited{
@@ -49,6 +49,10 @@ h1,h2,h3,h4,h5,h6,p{
     margin-bottom: 20px;
 }
 
+.mat-card {
+    margin: 20px;
+}
+
 .mat-card-header-text,
 .input-full-width{
     width: 100%;
@@ -62,7 +66,7 @@ h1,h2,h3,h4,h5,h6,p{
 
 .mat-card .mat-card-content{
     display: grid;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 input::-webkit-outer-spin-button,
@@ -79,6 +83,38 @@ input[type=number] {
     margin: 0 10px;
 }
 
+.mat-progress-spinner-wrapper{
+    position: absolute;
+    left: 0;
+    left: 0;
+    top: 0;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: rgba(50,50,50,0.5)
+}
+
+.progress-spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.form-card{
+    justify-content: center;
+}
+
+.mat-expansion-panel-header-description{
+    justify-content: flex-end;
+}
+
+.mat-raised-button:hover {
+    color: #aaa;
+}
+
 /*Angular theme modification*/
 .mat-custom-primary{
     background-color: #957979;
@@ -89,7 +125,9 @@ input[type=number] {
     caret-color: #957979 !important;
 }
 
-.mat-form-field.mat-focused .mat-form-field-label{
+.mat-form-field.mat-focused .mat-form-field-label,
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow,
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
     color: #957979 !important;
 }
 

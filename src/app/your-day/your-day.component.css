@@ -1,0 +1,166 @@
+.meal-del{
+    position: absolute;
+    right: 34px;
+    color: #957979;
+    top: 47px;
+}
+
+.meal-del-icon{
+    font-size: 16px;
+}
+
+.meal-nutrition {
+    border: 1px solid #666;
+    margin: 0 1px;
+    padding: 3px 5px;
+    color: #aaa;
+}
+
+.meal-wrapper {
+    margin: 15px 0;
+    position: relative;
+}
+
+.meal-title{
+    min-width: 60px;
+}
+
+.food-items-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.food-title{
+    color: #aaa;
+    border-bottom: 1px solid #565656;
+    font-size: 16px;
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+.food-items{
+    cursor: move;
+}
+
+table {
+    border-collapse: collapse;
+  }
+  
+table, td, th {
+    border: 1px solid #555;
+}
+
+td{
+    padding: 5px 7px;
+    color: #957979;
+}
+
+.nutrition-name{
+    color:#aaa;
+    font-weight: bold;
+    background-color: #484848;
+}
+
+.food-remove{
+    position: absolute;
+    right: -9px;
+    top: -9px;
+    color: #aaa;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.nutritions-data{
+    margin-bottom: 15px;
+}
+
+.food-items-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.food-items{
+    display: grid;
+}
+
+.food-title{
+    color: #aaa;
+    border-bottom: 1px solid #565656;
+    font-size: 16px;
+    padding: 5px 0;
+}
+
+table {
+    border-collapse: collapse;
+  }
+  
+table, td, th {
+    border: 1px solid #555;
+}
+
+td{
+    padding: 5px 7px;
+    color: #957979;
+}
+
+.nutrition-name{
+    color:#aaa;
+    font-weight: bold;
+    background-color: #484848;
+}
+
+.btns-wrapper{
+    margin-top: 10px;
+}
+
+.add-food-btn {
+    min-width: 50px;
+    line-height: 28px;
+    padding: 0 7px;
+    font-size: 12px;
+    color: #ccc;
+}
+
+.add-food-btn:hover {
+    color: #bbb;
+}
+
+@media screen and (max-width: 1280px) {
+
+}
+
+@media screen and (max-width: 890px) {
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .meal-nutrition {
+        font-size: 12px;
+    }
+
+    .mat-content {
+        display: block !important;
+    }
+
+}

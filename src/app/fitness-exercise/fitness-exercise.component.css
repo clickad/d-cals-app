@@ -1,0 +1,16 @@
+.mat-form-field-infix {
+    width: 330px !important;
+}
+
+.exersice-title{
+    color: #ccc;
+}
+
+.mat-card-content .exersice-desc {
+    margin: 15px 0;
+    color: #aaa;
+}
+
+.exercise-img{
+    width: 15%;
+}

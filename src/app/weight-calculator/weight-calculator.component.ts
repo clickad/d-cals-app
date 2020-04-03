@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class WeightCalculatorComponent implements OnInit {
 
   public title: string = "Ideal Weight Calculator";
-  public subtitle: string = "The Ideal Weight Calculator computes ideal (health-wise) bodyweight(IBW) ranges based on height and gender.";
+  public subtitle: string = "Computes ideal (health-wise) bodyweight(IBW) ranges based on height and gender.";
   public formdata: any;
   public resultFrom: any;
   public resultTo: any;

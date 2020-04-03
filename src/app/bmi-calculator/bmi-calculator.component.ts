@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class BmiCalculatorComponent implements OnInit {
 
   public title: string = "BMI Calculator";
-  public subtitle: string = "The Body Mass Index (BMI) Calculator can be used to calculate BMI value and corresponding weight status.";
+  public subtitle: string = "Can be used to calculate BMI value and corresponding weight status.";
   public result: string;
   formdata: any;
 

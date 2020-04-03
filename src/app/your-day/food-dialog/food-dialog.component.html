@@ -1,0 +1,76 @@
+<div mat-dialog-content>
+  <div class="mat-progress-spinner-wrapper" *ngIf="isLoading">
+    <div class="progress-spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<button class="back-button" mat-stroked-button (click)="closeDialog()">
+    <mat-icon aria-hidden="false" aria-label="Icon" class="back-button-icon">arrow_back</mat-icon>
+</button>
+<h1 class="page-title">{{ title }}</h1>
+<p>{{ subtitle }}</p>
+<mat-card>
+    <mat-card-content>
+        <form #searchbox class="search-form" autocomplete="off">
+            <mat-form-field>
+                <mat-label></mat-label>
+                <input #searchbox type="text" matInput>
+            </mat-form-field>
+            <button mat-button (click)="getData(searchbox.value)"><mat-icon matSuffix>search</mat-icon></button>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<div *ngIf="result; else message" class="food-items-wrapper">
+    <mat-card *ngFor="let food of foodData" class="food-items">
+        <mat-card-title class="food-title">
+            {{food.fields.item_name}}
+        </mat-card-title>
+        <mat-card-content>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="nutrition-name">Serving</td>
+                        <td>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}}</td>
+                    </tr>
+                    <tr>
+                        <td class="nutrition-name">Calories</td>
+                        <td>{{food.fields.nf_calories}}</td>
+                    </tr>
+                    <tr>
+                        <td class="nutrition-name">Protein</td>
+                        <td>{{food.fields.nf_protein}}</td>
+                    </tr>
+                    <tr>
+                        <td class="nutrition-name">Fiber</td>
+                        <td>{{food.fields.nf_dietary_fiber}}</td>
+                    </tr>
+                    <tr>
+                        <td class="nutrition-name">Carbohydrate:</td>
+                        <td>{{food.fields.nf_total_carbohydrate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="btns-wrapper">
+                <button mat-raised-button (click)="addFood(food.fields, 0)" cdkFocusInitial>Breakfast</button>
+                <button mat-raised-button (click)="addFood(food.fields, 1)" cdkFocusInitial>Lunch</button>
+                <button mat-raised-button (click)="addFood(food.fields, 2)" cdkFocusInitial>Dinner</button>
+                <button mat-raised-button (click)="addFood(food.fields, 3)" cdkFocusInitial>Snack</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<ng-template #message>
+    <mat-card>
+        <mat-card-title class="food-title">
+            Nothing found!
+        </mat-card-title>
+        <p>
+            We could not find any result. Please try again with something else.
+        </p>
+        <p>Please try something like: meat, milk, eggs...etc.</p>
+    </mat-card>
+</ng-template>
+
+</div>

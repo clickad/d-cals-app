@@ -1,7 +1,40 @@
 <div class="main-container">
+    <div class="mat-progress-spinner-wrapper" *ngIf="isLoading">
+        <div class="progress-spinner">
+            <mat-spinner></mat-spinner>
+        </div>
+    </div>
     <a mat-stroked-button routerLink="/home" class="back-button">
         <mat-icon aria-hidden="false" aria-label="Icon" class="back-button-icon">arrow_back</mat-icon>
     </a>
-    <h1 class="page-title">Search for Exercise</h1>
-    <p>Exercise is any bodily activity that enhances or maintains physical fitness and overall health and wellness. It is performed for various reasons, including increasing growth and development, preventing aging, strengthening muscles and the cardiovascular system, honing athletic skills, weight loss or maintenance, and also enjoyment.</p>
+    <h1 class="page-title">S{{ title }}</h1>
+    <p>{{ subtitle }}</p>
+    <mat-card class="form-wrapper">
+        <mat-card-content>
+            <form #searchbox class="search-form">
+                <mat-form-field>
+                    <mat-label>Search by Categories</mat-label>
+                    <mat-select #searchbox (selectionChange)="getData(searchbox.value)">
+                      <mat-option *ngFor="let exersice of exercises" [value]="exersice.id">
+                        {{exersice.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngFor="let exersice of exerciseInfo">
+        <mat-card-title class="exersice-title">
+            {{exersice.name}}
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <p class="exersice-desc">{{exersice.description | htmlFilter}}</p>
+            <div class="exersice-image-wrapper">
+                <img *ngFor="let image of imagesData | imageFilter: exersice.id" class="exercise-img" src="{{image.image}}" alt="Card image cap">
+            </div>
+        </mat-card-content>
+    </mat-card>
+
 </div>

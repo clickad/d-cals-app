@@ -2,6 +2,148 @@
     <a mat-stroked-button routerLink="/home" class="back-button">
         <mat-icon aria-hidden="false" aria-label="Icon" class="back-button-icon">arrow_back</mat-icon>
     </a>
+    <p class="nutritions-data">
+        <span class="meal-nutrition">Calories: <span class="meal-nutrition-data">{{ calculateTotalNutritions().calories }}</span></span>
+        <span class="meal-nutrition">Proteins: <span class="meal-nutrition-data">{{ calculateTotalNutritions().proteins }}</span></span>
+        <span class="meal-nutrition">Fiber: <span class="meal-nutrition-data">{{ calculateTotalNutritions().fiber }}</span></span>
+        <span class="meal-nutrition">Carbs: <span class="meal-nutrition-data">{{ calculateTotalNutritions().carbs }}</span></span>
+    </p>
     <h1 class="page-title">Your Day</h1>
-    <p>Search for food and add to meal box!</p>
+    <p>Search for Food and add to Meals!</p>
+
+      <mat-tab-group dynamicHeight>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+            Your day
+          </ng-template>
+          <mat-accordion multi="true" cdkDropListGroup>
+            <mat-expansion-panel class="meal-wrapper" *ngFor="let meal of meals; let i = index" [expanded]="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="meal-title">
+                  {{meal.name}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    <span class="meal-nutrition">Calories: <span class="meal-nutrition-data">{{ calculatePerType(i).calories }}</span></span>
+                    <span class="meal-nutrition">Proteins: <span class="meal-nutrition-data">{{ calculatePerType(i).proteins }}</span></span>
+                    <span class="meal-nutrition">Fiber: <span class="meal-nutrition-data">{{ calculatePerType(i).fiber }}</span></span>
+                    <span class="meal-nutrition">Carbs: <span class="meal-nutrition-data">{{ calculatePerType(i).carbs }}</span></span>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <button *ngIf="meals[i].data.length > 0" class="meal-del" mat-icon-button (click)="clear(i)">Clear</button>
+              <div class="food-items-wrapper" cdkDropList [cdkDropListData]="meal.data" (cdkDropListDropped)="drop($event)">
+                <mat-card *ngFor="let food of meal.data; let i = index" class="food-items" cdkDrag>
+                    <button class="food-remove" mat-icon-button (click)="remove(meal.data, i)"><mat-icon class="meal-del-icon">clear</mat-icon></button>
+                    <mat-card-title class="food-title">
+                        {{food.item_name}}
+                    </mat-card-title>
+                    <mat-card-content>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="nutrition-name">Serving</td>
+                                    <td>{{food.nf_serving_size_qty}} {{food.nf_serving_size_unit}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nutrition-name">Calories</td>
+                                    <td>{{food.nf_calories}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nutrition-name">Protein</td>
+                                    <td>{{food.nf_protein}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nutrition-name">Fiber</td>
+                                    <td>{{food.nf_dietary_fiber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nutrition-name">Carbohydrate:</td>
+                                    <td>{{food.nf_total_carbohydrate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-card-content>
+                </mat-card>
+                <p *ngIf="meal.data.length == 0">No Food added yet.</p>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-tab>
+      
+        <mat-tab>
+            <ng-template mat-tab-label>
+             <mat-icon class="example-tab-icon">add</mat-icon>
+             Add food
+            </ng-template>
+            <div class="mat-progress-spinner-wrapper" *ngIf="isLoading">
+                <div class="progress-spinner">
+                    <mat-spinner></mat-spinner>
+                </div>
+            </div>
+
+            <mat-card>
+                <mat-card-content>
+                    <form #searchbox class="search-form" autocomplete="off">
+                        <mat-form-field>
+                            <mat-label>Search for food</mat-label>
+                            <input #searchbox type="text" matInput>
+                        </mat-form-field>
+                        <button mat-button (click)="getData(searchbox.value)"><mat-icon matSuffix>search</mat-icon></button>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        
+            <div *ngIf="result; else message" class="food-items-wrapper">
+                <mat-card *ngFor="let food of foodData" class="food-items">
+                    <mat-card-title class="food-title">
+                        {{food.fields.item_name}}
+                    </mat-card-title>
+                    <mat-card-content>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="nutrition-name">Serving</td>
+                                    <td>{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nutrition-name">Calories</td>
+                                    <td>{{food.fields.nf_calories}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nutrition-name">Protein</td>
+                                    <td>{{food.fields.nf_protein}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nutrition-name">Fiber</td>
+                                    <td>{{food.fields.nf_dietary_fiber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="nutrition-name">Carbohydrate:</td>
+                                    <td>{{food.fields.nf_total_carbohydrate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="btns-wrapper">
+                            <button mat-raised-button class="add-food-btn" (click)="addFood(food.fields, 0)" cdkFocusInitial>Breakfast</button>
+                            <button mat-raised-button class="add-food-btn" (click)="addFood(food.fields, 1)" cdkFocusInitial>Lunch</button>
+                            <button mat-raised-button class="add-food-btn" (click)="addFood(food.fields, 2)" cdkFocusInitial>Dinner</button>
+                            <button mat-raised-button class="add-food-btn" (click)="addFood(food.fields, 3)" cdkFocusInitial>Snack</button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        
+            <ng-template #message>
+                <mat-card>
+                    <mat-card-title class="food-title">
+                        Nothing found!
+                    </mat-card-title>
+                    <p>
+                        We could not find any result. Please try again with something else.
+                    </p>
+                    <p>Please try something like: meat, milk, eggs...etc.</p>
+                </mat-card>
+            </ng-template>
+        </mat-tab>
+      </mat-tab-group>
 </div>

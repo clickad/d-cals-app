@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class CaloriesCalculatorComponent implements OnInit {
 
   public title: string = "Calories Calculator";
-  public subtitle: string = "The Calorie Calculator can be used to estimate the number of calories a person needs to consume each day.";
+  public subtitle: string = "Can be used to estimate the number of calories a person needs to consume each day.";
   public formdata: any;
   public result: any;
 

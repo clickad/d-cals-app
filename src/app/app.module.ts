@@ -54,6 +54,9 @@ import { CaloriesCalculatorComponent } from './calories-calculator/calories-calc
 import { WeightCalculatorComponent } from './weight-calculator/weight-calculator.component';
 import { BmiCalculatorComponent } from './bmi-calculator/bmi-calculator.component';
 
+import { HttpClientModule } from "@angular/common/http";
+import { HtmlFilterPipe } from './pipes/html-filter.pipe';
+import { ImageFilterPipe } from './pipes/image-filter.pipe';
 @NgModule({
   exports: [
     A11yModule,
@@ -108,8 +111,11 @@ import { BmiCalculatorComponent } from './bmi-calculator/bmi-calculator.componen
     YourDayComponent,
     CaloriesCalculatorComponent,
     WeightCalculatorComponent,
-    BmiCalculatorComponent
+    BmiCalculatorComponent,
+    HtmlFilterPipe,
+    ImageFilterPipe
   ],
+  entryComponents: [],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -158,7 +164,8 @@ import { BmiCalculatorComponent } from './bmi-calculator/bmi-calculator.componen
     ScrollingModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
