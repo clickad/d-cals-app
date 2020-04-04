@@ -135,7 +135,8 @@ input[type=number] {
 .mat-radio-button.mat-accent .mat-radio-inner-circle, 
 .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, 
-.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple  {
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple,
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background-color: #957979 !important;
 }
 

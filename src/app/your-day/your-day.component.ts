@@ -38,6 +38,13 @@ export class YourDayComponent implements OnInit {
     this.meals[type].data = [];
   }
 
+  clearAll(){
+    this.meals[0].data = [];
+    this.meals[1].data = [];
+    this.meals[2].data = [];
+    this.meals[3].data = [];
+  }
+
   calculateTotalNutritions(){
     let calories: any= 0;
     let proteins: any= 0;
