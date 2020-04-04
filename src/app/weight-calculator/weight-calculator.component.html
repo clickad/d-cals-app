@@ -10,7 +10,7 @@
             <!-- <mat-card-title>Weight Calculator</mat-card-title> -->
         </mat-card-header>
         <mat-card-content class="form-card">
-            <form [formGroup]="formdata">
+            <form [formGroup]="formdata" autocomplete="off">
                 <mat-radio-group formControlName="gender">
                     <mat-radio-button class="radio-margin" value="1">Male</mat-radio-button>
                     <mat-radio-button class="radio-margin" value="2">Female</mat-radio-button>

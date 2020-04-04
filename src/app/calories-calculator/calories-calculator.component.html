@@ -10,7 +10,7 @@
             <!-- <mat-card-title>Calories Calculator</mat-card-title> -->
         </mat-card-header>
         <mat-card-content class="form-card">
-            <form [formGroup]="formdata">
+            <form [formGroup]="formdata" autocomplete="off">
                 <mat-form-field class="input-full-width">
                     <mat-label>Enter Your Age</mat-label>
                     <input type="number" matInput formControlName="age">

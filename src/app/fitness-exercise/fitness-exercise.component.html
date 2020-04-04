@@ -11,7 +11,7 @@
     <p>{{ subtitle }}</p>
     <mat-card class="form-wrapper">
         <mat-card-content>
-            <form #searchbox class="search-form">
+            <form #searchbox class="search-form" autocomplete="off">
                 <mat-form-field>
                     <mat-label>Search by Categories</mat-label>
                     <mat-select #searchbox (selectionChange)="getData(searchbox.value)">

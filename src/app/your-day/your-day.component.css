@@ -23,6 +23,8 @@
 
 .meal-title{
     min-width: 60px;
+    color: #957979;
+    text-transform: uppercase;
 }
 
 .food-items-wrapper {
@@ -143,6 +145,10 @@ td{
 
 .add-food-btn:hover {
     color: #bbb;
+}
+
+.food-items-wrapper{
+    color: #aaa;
 }
 
 @media screen and (max-width: 1280px) {

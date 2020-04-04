@@ -115,6 +115,14 @@ input[type=number] {
     color: #aaa;
 }
 
+@media screen and (max-width: 480px) {
+
+    .main-container .back-button {
+        top: 58px;
+    }
+
+}
+
 /*Angular theme modification*/
 .mat-custom-primary{
     background-color: #957979;
