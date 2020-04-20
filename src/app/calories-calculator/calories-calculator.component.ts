@@ -17,6 +17,7 @@ export class CaloriesCalculatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.formdata = new FormGroup({
+      unit: new FormControl("", Validators.compose([Validators.required])),
       age: new FormControl(
         "",
         Validators.compose([
@@ -29,7 +30,7 @@ export class CaloriesCalculatorComponent implements OnInit {
         "",
         Validators.compose([
           Validators.required,
-          Validators.pattern("^[1-9][0-9]*$")
+          Validators.pattern("")
         ])
       ),
       weight: new FormControl(
@@ -44,16 +45,27 @@ export class CaloriesCalculatorComponent implements OnInit {
   calculate(data): void {
     //For men:	BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) + 5
     //For women: BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) - 161
+
+    let height = data.unit == 1 ? data.height : (data.height*30.48).toFixed(1);
+    let weight = data.unit == 1 ? data.weight : (data.weight*0.45359237).toFixed(1);
+
     if (data.gender === "1") {
       this.result = Math.round(
-        (10 * data.weight + 6.25 * data.height - 5 * data.age) * 1.2 + 5
+        (10 * weight + 6.25 * height - 5 * data.age) * 1.2 + 5
       );
     } else {
       this.result = Math.round(
-        (10 * data.weight + 6.25 * data.height - 5 * data.age) * 1.2 - 161
+        (10 * weight + 6.25 * height - 5 * data.age) * 1.2 - 161
       );
     }
-    this.result = this.result + " cal";
+  }
+
+  resetForm(){
+    this.formdata.patchValue({
+      weight: "",
+      height: ""
+    });
+    this.formdata.markAsUntouched()
   }
 
 }

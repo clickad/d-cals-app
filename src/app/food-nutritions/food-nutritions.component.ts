@@ -8,7 +8,7 @@ import { FoodNutritionsService } from '../services/food-nutritions.service';
 })
 export class FoodNutritionsComponent implements OnInit {
 
-  public title = "Search for food nutrition!";
+  public title = "Food Nutrition!";
   public subtitle = "Nutrition is the science that interprets the interaction of nutrients and other substances in food in relation to maintenance, growth, reproduction, health and disease of an organism.";
   
   foodData: any[];

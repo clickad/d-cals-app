@@ -7,8 +7,8 @@ html{
 body{
     font-family: Rajdhani, Roboto, Arial, Helvetica, sans-serif;
     background-color: #464646;
-    display: grid;
-    align-content: center;
+    /* display: grid;
+    align-content: center; */
     min-height: 100%;
     margin:0;
     padding: 0;
@@ -25,6 +25,14 @@ h1,h2,h3,h4,h5,h6,p{
     margin: 5px 0;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+  }
+
+.main-wrapper{
+    padding-top: 20px;
+}
+
 .main-container{
     width: 100%;
     height: 100%;
@@ -35,7 +43,6 @@ h1,h2,h3,h4,h5,h6,p{
     position: absolute;
     top: 10px;
     left: 10px;
-    padding: 5px 7px;
     display: block;
     color: #aaa;
     border-color: #666;
@@ -47,6 +54,7 @@ h1,h2,h3,h4,h5,h6,p{
 
 .page-subtitle {
     margin-bottom: 20px;
+    padding: 0 5px;
 }
 
 .mat-card {
@@ -111,16 +119,28 @@ input[type=number] {
     justify-content: flex-end;
 }
 
-.mat-raised-button:hover {
-    color: #aaa;
+.mat-expansion-panel-body {
+    background-color: #3f3f3f;
 }
 
-@media screen and (max-width: 480px) {
+.mat-expansion-panel-header.mat-expanded:focus, .mat-expansion-panel-header.mat-expanded:hover {
+    background-color:#393939 !important;
+}
 
-    .main-container .back-button {
-        top: 58px;
-    }
+.mat-accordion>.mat-expansion-panel-spacing:first-child, .mat-accordion>*:first-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+    margin-top: 15px !important;
+}
 
+.mat-raised-button:hover {
+    color: #ccc;
+}
+
+.calc-result{
+    color: #957979;
+}
+
+.unit-radio{
+    margin-bottom: 15px;
 }
 
 /*Angular theme modification*/
@@ -152,3 +172,21 @@ input[type=number] {
     border-color: #957979 !important;
 }
 /*End of Angular theme modification*/
+
+@media screen and (max-width: 890px) {
+
+    .main-container .back-button {
+        top: 0;
+        left: 0;
+        padding: 0;
+        border: none;
+        min-width: 20px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .mat-expansion-panel-header-description {
+        line-height: 11px;
+    }
+}

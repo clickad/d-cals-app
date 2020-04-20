@@ -57,6 +57,7 @@ import { BmiCalculatorComponent } from './bmi-calculator/bmi-calculator.componen
 import { HttpClientModule } from "@angular/common/http";
 import { HtmlFilterPipe } from './pipes/html-filter.pipe';
 import { ImageFilterPipe } from './pipes/image-filter.pipe';
+import { AddWorkoutsComponent } from './your-day/add-workouts/add-workouts.component';
 @NgModule({
   exports: [
     A11yModule,
@@ -113,7 +114,8 @@ import { ImageFilterPipe } from './pipes/image-filter.pipe';
     WeightCalculatorComponent,
     BmiCalculatorComponent,
     HtmlFilterPipe,
-    ImageFilterPipe
+    ImageFilterPipe,
+    AddWorkoutsComponent
   ],
   entryComponents: [],
   imports: [

@@ -11,27 +11,41 @@
         </mat-card-header>
         <mat-card-content class="form-card">
             <form [formGroup]="formdata" autocomplete="off">
-                <mat-form-field class="input-full-width">
-                    <mat-label>Enter Your Age</mat-label>
-                    <input type="number" matInput formControlName="age">
-                </mat-form-field>
-                <mat-radio-group formControlName="gender">
-                    <mat-radio-button class="radio-margin" value="1">Male</mat-radio-button>
-                    <mat-radio-button class="radio-margin" value="2">Female</mat-radio-button>
-                </mat-radio-group>
-                <mat-form-field class="input-full-width">
-                    <mat-label>Enter Your height in Centimeters</mat-label>
-                    <input type="number" matInput formControlName="height">
-                </mat-form-field>
-                <mat-form-field class="input-full-width">
-                    <mat-label>Enter You Weight in Kilograms</mat-label>
-                    <input type="number" matInput formControlName="weight">
-                </mat-form-field>
+                <div class="unit-radio">
+                    <mat-radio-group formControlName="unit">
+                        <mat-radio-button class="radio-margin" value="1" (change)="resetForm()">Metric Units</mat-radio-button>
+                        <mat-radio-button class="radio-margin" value="2" (change)="resetForm()">US units</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div *ngIf="formdata.get('unit').value">
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Enter Your Age</mat-label>
+                        <input type="number" matInput formControlName="age">
+                    </mat-form-field>
+                    <mat-radio-group formControlName="gender">
+                        <mat-radio-button class="radio-margin" value="1">Male</mat-radio-button>
+                        <mat-radio-button class="radio-margin" value="2">Female</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Enter Your height in
+                            <span *ngIf="formdata.get('unit').value == 1">Centimeters</span>
+                            <span *ngIf="formdata.get('unit').value == 2">Feets</span>
+                        </mat-label>
+                        <input type="number" matInput formControlName="height" step=".01">
+                    </mat-form-field>
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Enter You Weight in 
+                            <span *ngIf="formdata.get('unit').value == 1">Kilograms</span>
+                            <span *ngIf="formdata.get('unit').value == 2">Lbs</span>
+                        </mat-label>
+                        <input type="number" matInput formControlName="weight">
+                    </mat-form-field>
+                </div>
             </form>
-            <button mat-raised-button [disabled]="!formdata.valid" (click)="calculate(formdata.value)" color="custom-primary">Calculate</button>
+            <button mat-raised-button *ngIf="formdata.get('unit').value" [disabled]="!formdata.valid" (click)="calculate(formdata.value)" color="custom-primary">Calculate</button>
         </mat-card-content>
-        <mat-card-actions>
-            Calories/day to maintain your weight: <span class="calc-result">{{result}}</span>
+        <mat-card-actions *ngIf="result">
+            Calories/day to maintain your weight: <span class="calc-result">{{result}}</span> Calories
         </mat-card-actions>
     </mat-card>
 </div>

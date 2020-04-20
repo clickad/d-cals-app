@@ -8,6 +8,11 @@
     padding: 10px;
 }
 
+.home-title {
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
 .home-nav-item{
     position: relative;
     text-align: center;

@@ -21,14 +21,25 @@ export class HomeComponent implements OnInit {
 
   tiles: Tile[] = [
     {
+      text: 'Your Day', 
+      link: 'your-day',
+      cols: 2, 
+      rows: 2, 
+      color: '#645f5f', 
+      icon: "track_changes", 
+      font_color: "#999595", 
+      desc_color: '#3c3c3c',
+      description: "Check your Day intake of Calories, Proteins..."
+    },
+    {
       text: 'Food Nutritions', 
       link: 'food-nutritions',
       cols: 2, 
       rows: 2, 
-      color: '#645f5f', 
+      color: '#756c6c ', 
       icon: "fastfood", 
-      font_color: "#999595", 
-      desc_color: '#3c3c3c',
+      font_color: "#a59696", 
+      desc_color: '#414141',
       description: "Search for Food and get Nutritions data."
     },
     {
@@ -36,22 +47,11 @@ export class HomeComponent implements OnInit {
       link: 'fitness-exercise',
       cols: 2, 
       rows: 2, 
-      color: '#756c6c', 
-      icon: "pool", 
-      font_color: "#a59696", 
-      desc_color: '#414141',
-      description: "Search for Exercises by Categories."
-    },
-    {
-      text: 'Your Day', 
-      link: 'your-day',
-      cols: 2, 
-      rows: 2, 
       color: '#957979', 
-      icon: "track_changes", 
+      icon: "directions_run", 
       font_color: "#b99f9f", 
       desc_color: '#464646',
-      description: "Check your Day intake of Calories."
+      description: "Calories burned by Workout."
     },
     {
       text: 'Calories Calculator', 

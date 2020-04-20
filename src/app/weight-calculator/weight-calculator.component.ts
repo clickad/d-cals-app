@@ -19,27 +19,38 @@ export class WeightCalculatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.formdata = new FormGroup({
+      unit: new FormControl("", Validators.compose([Validators.required])),
       gender: new FormControl("", Validators.compose([Validators.required])),
       height: new FormControl(
         "",
         Validators.compose([
           Validators.required,
-          Validators.pattern("^[1-9][0-9]*$")
+          Validators.pattern("")
         ])
       )
     });
   }
   calculate(data) {
+    
+    let height = data.unit == 1 ? data.height : (data.height*30.48).toFixed(1);
+
     if (data.gender === "1") {
-      this.resultFrom = (18.5 * Math.pow(data.height / 100, 2)).toFixed(1);
-      this.resultTo = (25 * Math.pow(data.height / 100, 2)).toFixed(1);
+      this.resultFrom = (18.5 * Math.pow(height / 100, 2)).toFixed(1);
+      this.resultTo = (25 * Math.pow(height / 100, 2)).toFixed(1);
     } else {
-      this.resultFrom = 18.5 * Math.pow(data.height / 100, 2);
-      this.resultTo = 25 * Math.pow(data.height / 100, 2);
+      this.resultFrom = 18.5 * Math.pow(height / 100, 2);
+      this.resultTo = 25 * Math.pow(height / 100, 2);
       this.resultFrom = (this.resultFrom - this.resultFrom / 10).toFixed(1);
       this.resultTo = (this.resultTo - this.resultTo / 10).toFixed(1);
     }
     this.result = this.resultFrom + " kg - " + this.resultTo + " kg";
+  }
+
+  resetForm(){
+    this.formdata.patchValue({
+      height: ""
+    });
+    this.formdata.markAsUntouched()
   }
 
 }

@@ -1,0 +1,63 @@
+<mat-accordion>
+    <div class="workout-form-wrapper">
+    <mat-card class="form-wrapper">
+        <mat-card-header>
+        </mat-card-header>
+        <mat-card-content class="form-card">
+            <form [formGroup]="formData" autocomplete="off">
+                <div class="unit-radio">
+                    <mat-radio-group formControlName="unit">
+                        <mat-radio-button class="radio-margin" value="1" (change)="resetForm()">Metric Units</mat-radio-button>
+                        <mat-radio-button class="radio-margin" value="2" (change)="resetForm()">US units</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div *ngIf="formData.get('unit').value">
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Enter Your Age</mat-label>
+                        <input type="number" matInput formControlName="age">
+                    </mat-form-field>
+                    <mat-radio-group formControlName="gender">
+                        <mat-radio-button class="radio-margin" value="1">Male</mat-radio-button>
+                        <mat-radio-button class="radio-margin" value="2">Female</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Enter Your height in 
+                            <span *ngIf="formData.get('unit').value == 1">Centimeters</span>
+                            <span *ngIf="formData.get('unit').value == 2">Feets</span>
+                        </mat-label>
+                        <input type="number" matInput formControlName="height" step=".01">
+                    </mat-form-field>
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Enter You Weight in 
+                            <span *ngIf="formData.get('unit').value == 1">Kilograms</span>
+                            <span *ngIf="formData.get('unit').value == 2">Lbs</span></mat-label>
+                        <input type="number" matInput formControlName="weight">
+                    </mat-form-field>
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Select Workout</mat-label>
+                        <mat-select formControlName="type">
+                          <mat-option *ngFor="let workout of workouts; let i = index" [value]="workout.id">
+                            {{workout.name}}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="input-full-width">
+                        <mat-label>Enter Duration in Minutes</mat-label>
+                        <input type="number" matInput formControlName="duration">
+                    </mat-form-field>
+                </div>
+            </form>
+            <button mat-raised-button 
+                    [disabled]="!formData.valid" 
+                    *ngIf="formData.get('unit').value" 
+                    (click)="addWorkout(formData.value, formData.get('type').value)" 
+                    color="custom-primary">
+                        Add
+            </button>
+        </mat-card-content>
+        <!-- <mat-card-actions *ngIf="result">
+            Calories burned: <span class="calc-result">{{result}}</span>
+        </mat-card-actions> -->
+    </mat-card>
+    </div>
+</mat-accordion>
