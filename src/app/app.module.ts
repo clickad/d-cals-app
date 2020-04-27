@@ -58,6 +58,10 @@ import { HttpClientModule } from "@angular/common/http";
 import { HtmlFilterPipe } from './pipes/html-filter.pipe';
 import { ImageFilterPipe } from './pipes/image-filter.pipe';
 import { AddWorkoutsComponent } from './your-day/add-workouts/add-workouts.component';
+import { AddFoodComponent } from './your-day/add-food/add-food.component';
+import { UserDefaultValuesComponent } from './dialogs/user-default-values/user-default-values.component';
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
+
 @NgModule({
   exports: [
     A11yModule,
@@ -115,9 +119,12 @@ import { AddWorkoutsComponent } from './your-day/add-workouts/add-workouts.compo
     BmiCalculatorComponent,
     HtmlFilterPipe,
     ImageFilterPipe,
-    AddWorkoutsComponent
+    AddWorkoutsComponent,
+    AddFoodComponent,
+    UserDefaultValuesComponent,
+    ConfirmDialogComponent
   ],
-  entryComponents: [],
+  entryComponents: [UserDefaultValuesComponent, ConfirmDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

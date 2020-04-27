@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-workouts',
@@ -59,6 +58,9 @@ export class AddWorkoutsComponent implements OnInit {
         ])
       )
     });
+    if(localStorage.hasOwnProperty("userData")){
+      this.setData();
+    }
   }
 
   addWorkout(data, type){
@@ -71,8 +73,8 @@ export class AddWorkoutsComponent implements OnInit {
     let bmr: any;
     let result: any;
     let mets: any;
-    let weight = data.unit == 1 ? data.weight : data.weight*0.45359237 ;
-    let height = data.unit == 1 ? data.height : data.height*30.48 ;
+    let weight = data.unit == 1 ? data.weight : data.weight*0.45359237;
+    let height = data.unit == 1 ? data.height : data.height*30.48;
     switch(type){
       case 1:
         mets = 9*(data.duration/60);
@@ -118,6 +120,17 @@ export class AddWorkoutsComponent implements OnInit {
       height: ""
     });
     this.formData.markAsUntouched()
+  }
+
+  setData(){
+    let data = JSON.parse(localStorage.getItem('userData'));
+    this.formData.patchValue({
+      unit: data.unit,
+      age: data.age,
+      weight: data.weight,
+      height: data.height,
+      gender: data.gender == "Male" ? "1" : "2"
+    });
   }
 
 }

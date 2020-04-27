@@ -2,21 +2,24 @@
     <a mat-stroked-button routerLink="/home" class="back-button">
         <mat-icon aria-hidden="false" aria-label="Icon" class="back-button-icon">arrow_back</mat-icon>
     </a>
+
+    <h1 class="page-title">Your Day</h1>
+    <p>Add Food and Workouts to your Day!</p>
+
     <div class="nutritions-data">
         <span class="meal-nutrition">Calories: <span class="meal-nutrition-data">{{ calculateTotalNutritions().calories }}</span></span>
         <span class="meal-nutrition">Proteins: <span class="meal-nutrition-data">{{ calculateTotalNutritions().proteins }}</span></span>
         <span class="meal-nutrition">Fiber: <span class="meal-nutrition-data">{{ calculateTotalNutritions().fiber }}</span></span>
         <span class="meal-nutrition">Carbs: <span class="meal-nutrition-data">{{ calculateTotalNutritions().carbs }}</span></span>
-    </div>
-    <h1 class="page-title">Your Day</h1>
-    <p>Add Food and Workouts to your Day!</p>
-
-    <button 
+        <button 
         *ngIf="meals[0].data.length > 0 || 
                meals[1].data.length > 0 || 
                meals[2].data.length > 0 || 
                meals[3].data.length > 0 ||
-               workouts[0].data.length > 0" class="meal-del" mat-icon-button (click)="clearAll()">Clear All</button>
+               workouts[0].data.length > 0" class=" meal-nutrition-data meal-del" mat-icon-button (click)="confirmDialog('The Day')">
+            <mat-icon aria-hidden="false" aria-label="Icon" class="back-button-icon" title="Reset the Day">cancel_presentation</mat-icon>
+        </button>
+    </div>
 
       <mat-tab-group dynamicHeight>
         <mat-tab>
@@ -37,7 +40,7 @@
                     <span class="meal-nutrition">Carbs: <span class="meal-nutrition-data">{{ calculatePerType(i).carbs }}</span></span>
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <button *ngIf="meals[i].data.length > 0" class="meal-empty" mat-icon-button (click)="clear(i)">Clear</button>
+              <button *ngIf="meals[i].data.length > 0" class="meal-empty" mat-icon-button (click)="confirmDialog(meal.name, i)">Clear</button>
               <div class="food-items-wrapper" cdkDropList [cdkDropListData]="meal.data" (cdkDropListDropped)="drop($event)">
                 <mat-card *ngFor="let food of meal.data; let i = index" class="food-items added-food-items" cdkDrag>
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Add food button" class="add-food-btn">
@@ -95,7 +98,7 @@
                       <span class="meal-nutrition">Calories burned: <span class="meal-nutrition-data">{{ calculateWorkoutBurnedCal().calories }}</span></span>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                <button *ngIf="workouts[0].data.length > 0" class="meal-empty" mat-icon-button (click)="clearWorkout()">Clear</button>
+                <button *ngIf="workouts[0].data.length > 0" class="meal-empty" mat-icon-button (click)="confirmDialog(workouts[0].name)">Clear</button>
                 <div class="food-items-wrapper">
                   <mat-card *ngFor="let workout of workouts[0].data; let i = index" class="food-items added-food-items added-workout">
                       <button class="food-remove" mat-icon-button (click)="remove(workouts[0].data, i)"><mat-icon class="meal-del-icon">clear</mat-icon></button>
@@ -126,92 +129,15 @@
              <mat-icon class="example-tab-icon">add</mat-icon>
              Add food
             </ng-template>
-            <div class="mat-progress-spinner-wrapper" *ngIf="isLoading">
-                <div class="progress-spinner">
-                    <mat-spinner></mat-spinner>
-                </div>
-            </div>
-
-            <mat-card>
-                <mat-card-content>
-                    <form #searchbox class="search-form" autocomplete="off">
-                        <mat-form-field>
-                            <mat-label>Search for food</mat-label>
-                            <input #searchbox type="text" matInput>
-                        </mat-form-field>
-                        <button mat-button (click)="getData(searchbox.value)"><mat-icon matSuffix>search</mat-icon></button>
-                    </form>
-                </mat-card-content>
-            </mat-card>
-        
-            <div *ngIf="result; else message" class="food-items-wrapper">
-                <mat-card *ngFor="let food of foodData" class="food-items add-food-items">
-
-                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Add food button" class="add-food-btn">
-                        <mat-icon class="add-btn-icon">more_vert</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="addFood(food.fields, 0)" class="add-menu-btn">
-                            <mat-icon class="add-btn-icon">add</mat-icon>
-                            <span>Breakfast</span>
-                        </button>
-                        <button mat-menu-item (click)="addFood(food.fields, 1)" class="add-menu-btn">
-                            <mat-icon class="add-btn-icon">add</mat-icon>
-                            <span>Lunch</span>
-                        </button>
-                        <button mat-menu-item (click)="addFood(food.fields, 2)" class="add-menu-btn">
-                            <mat-icon class="add-btn-icon">add</mat-icon>
-                            <span>Dinner</span>
-                        </button>
-                        <button mat-menu-item (click)="addFood(food.fields, 3)" class="add-menu-btn">
-                            <mat-icon class="add-btn-icon">add</mat-icon>
-                            <span>Snack</span>
-                        </button>
-                    </mat-menu>
-                      
-
-                    <mat-card-title class="food-title">
-                        {{ trimTitle(food.fields.item_name) }}
-                        <p class="serving-val">
-                            <span >{{food.fields.nf_serving_size_qty}} {{food.fields.nf_serving_size_unit}}</span>
-                        </p>
-                    </mat-card-title>
-                    <mat-card-content class="food-content">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="added-food-cel"><span class="nutrition">Calories: </span><span class="nutrition-val">{{food.fields.nf_calories}}</span></td>
-                                    <td class="added-food-cel"><span class="nutrition">Protein: </span><span class="nutrition-val">{{food.fields.nf_protein}}</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="added-food-cel"><span class="nutrition">Fiber: </span><span class="nutrition-val">{{food.fields.nf_dietary_fiber}}</span></td>
-                                    <td class="added-food-cel"><span class="nutrition">Carbohydrate: </span><span class="nutrition-val">{{food.fields.nf_total_carbohydrate}}</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        
-            <ng-template #message>
-                <mat-card>
-                    <mat-card-title class="food-title">
-                        Nothing found!
-                    </mat-card-title>
-                    <p>
-                        We could not find any result. Please try again with something else.
-                    </p>
-                    <p>Please try something like: meat, milk, eggs...etc.</p>
-                </mat-card>
-            </ng-template>
+            <app-add-food (addFoodToDay)="addFood($event)"></app-add-food>
         </mat-tab>
-        <app-add-workouts></app-add-workouts>
+
         <mat-tab>
             <ng-template mat-tab-label>
              <mat-icon class="example-tab-icon">add</mat-icon>
              Add Workout
             </ng-template>
-            <app-add-workouts (addWorkoutToDay)=addWorkout($event)></app-add-workouts>
+            <app-add-workouts (addWorkoutToDay)="addWorkout($event)"></app-add-workouts>
         </mat-tab>
       </mat-tab-group>
 </div>

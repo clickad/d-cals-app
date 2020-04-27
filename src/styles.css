@@ -140,7 +140,16 @@ input[type=number] {
 }
 
 .unit-radio{
-    margin-bottom: 15px;
+    margin: 15px 0;
+}
+
+.radio-group-wrapper{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.confirm-yes-btn{
+    background: #957979;
 }
 
 /*Angular theme modification*/

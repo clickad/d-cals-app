@@ -68,7 +68,6 @@ export class FitnessExerciseComponent implements OnInit {
     let mets: any;
     let weight = data.unit == 1 ? data.weight : data.weight*0.45359237 ;
     let height = data.unit == 1 ? data.height : data.height*30.48 ;
-    console.log(weight);
     switch(type){
       case 1:
         mets = 9*(data.duration/60);

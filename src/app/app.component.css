@@ -1,7 +1,55 @@
+.user-data-wrapper-1,
+.user-data-wrapper-2 {
+    text-align: center;
+}
+
+.user-data {
+    border: 1px solid #666;
+    margin: 0 1px;
+    padding: 2px 5px;
+    color: #aaa;
+    text-align: center;
+}
+
+.user-data-wrapper-1 .user-data {
+    border: none;
+}
+
+.user-data-wrapper-2{
+    margin-top: 5px;
+}
+
+.user-property{
+    color: #eee;
+}
+
 footer {
     margin-top: 15px;
 }
 
 .damage-text{
     font-size: 11px;
+}
+
+.settings-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@media screen and (max-width: 480px) {
+
+    .user-data {
+        font-size: 12px;
+    }
+
+    .settings-btn-icon{
+        font-size: 16px;
+    }
+
+    .settings-btn{
+        top: -5px;
+        right: -5px;
+    }
+
 }

@@ -1,0 +1,23 @@
+.mat-dialog-actions {
+    justify-content: center;
+}
+
+@media screen and (max-width: 890px) {
+
+    .confirm-dialog-wrapper {
+        font-size: 14px;
+    }
+    .mat-dialog-title {
+        font-size: 18px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .confirm-dialog-wrapper {
+        font-size: 12px;
+    }
+    .mat-dialog-title {
+        font-size: 16px;
+    }
+}

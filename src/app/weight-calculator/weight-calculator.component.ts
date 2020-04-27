@@ -29,6 +29,9 @@ export class WeightCalculatorComponent implements OnInit {
         ])
       )
     });
+    if(localStorage.hasOwnProperty("userData")){
+      this.setData();
+    }
   }
   calculate(data) {
     
@@ -51,6 +54,15 @@ export class WeightCalculatorComponent implements OnInit {
       height: ""
     });
     this.formdata.markAsUntouched()
+  }
+
+  setData(){
+    let data = JSON.parse(localStorage.getItem('userData'));
+    this.formdata.setValue({
+      unit: data.unit,
+      height: data.height,
+      gender: data.gender == "Male" ? "1" : "2"
+    });
   }
 
 }

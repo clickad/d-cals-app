@@ -9,7 +9,7 @@
 }
 
 .home-title {
-    margin-bottom: 15px;
+    margin: 25px 0 15px 0;
     text-transform: uppercase;
 }
 
@@ -51,6 +51,14 @@
     font-weight: bold;
     text-align: center;
     padding: 5px 10px;
+}
+
+@media screen and (max-width: 1680px) {
+
+    .home-nav-item .material-icons{
+        font-size: 80px;
+    }
+
 }
 
 @media screen and (max-width: 1280px) {
@@ -98,6 +106,11 @@
 
     .home-nav-desc{
         padding: 5px 40px;
+    }
+
+    .home-title{
+        margin: 15px 0 10px 0;
+        text-transform: uppercase;
     }
 
 }

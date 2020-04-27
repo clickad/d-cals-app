@@ -1,0 +1,9 @@
+<div mat-dialog-content class="confirm-dialog-wrapper">
+    <p>
+        {{'Reset ' +  data.type + '?'}}
+    </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="no()">No</button>
+  <button mat-raised-button (click)="yes()" class="confirm-yes-btn">Yes</button>
+</div>

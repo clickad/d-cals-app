@@ -1,4 +1,41 @@
 <div class="main-wrapper">
+    <header class="app-header">
+        <div class="user-data-wrapper-1" *ngIf="userData!=undefined && userData.age !==0">
+            <span class="user-data">
+                <span class="user-property">Age: </span>
+                <span class="user-value">{{userData.age}}</span>
+            </span>
+            <span class="user-data">
+                <span class="user-property">Height: </span>
+                <span class="user-value">{{userData.height}} {{userData.unit=="1" ? " cm" : " ft"}}</span>
+            </span>
+            <span class="user-data">
+                <span class="user-property">Weight: </span>
+                <span class="user-value">{{userData.weight}} {{userData.unit=="1" ? " kg" : " lbs"}}</span>
+            </span>
+            <span class="user-data">
+                <span class="user-property">Gender: </span>
+                <span class="user-value">{{userData.gender}}</span>
+            </span>
+        </div>
+        <div class="user-data-wrapper-2" *ngIf="calculateBMI()">
+            <span class="user-data">
+                <span class="user-property">BMI: </span>
+                <span class="user-value">{{calculateBMI()}}</span>
+            </span>
+            <span class="user-data">
+                <span class="user-property">Calories: </span>
+                <span class="user-value">{{calculateCalories()}}</span>
+            </span>
+            <span class="user-data">
+                <span class="user-property">Optimal Weight: </span>
+                <span class="user-value">{{calculateOptimalWeight()}}</span>
+            </span>
+        </div>
+        <button mat-icon-button  class="settings-btn" (click)="openDialog(true)">
+            <mat-icon class="settings-btn-icon">settings</mat-icon>
+        </button>
+    </header>
     <router-outlet></router-outlet>
     <footer>
         <p class="damage-text">

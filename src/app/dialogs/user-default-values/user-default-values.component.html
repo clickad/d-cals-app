@@ -1,0 +1,42 @@
+<h1 mat-dialog-title *ngIf="!data.edit">Set Your Values to proceed or skip for now.</h1>
+<div mat-dialog-content class="dialog-form-wrapper">
+  <form [formGroup]="formdata" autocomplete="off">
+    <div class="unit-radio">
+        <mat-radio-group formControlName="unit">
+            <mat-radio-button class="radio-margin" value="1" (change)="resetForm()">Metric Units</mat-radio-button>
+            <mat-radio-button class="radio-margin" value="2" (change)="resetForm()">US units</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div *ngIf="formdata.get('unit').value">
+        <mat-form-field class="input-full-width">
+            <mat-label>Enter Your Age</mat-label>
+            <input type="number" matInput formControlName="age">
+        </mat-form-field>
+        <mat-radio-group formControlName="gender" class="radio-group-wrapper">
+            <mat-radio-button class="radio-margin" value="Male">Male</mat-radio-button>
+            <mat-radio-button class="radio-margin" value="Female">Female</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field class="input-full-width">
+            <mat-label>Enter Your height in
+                <span *ngIf="formdata.get('unit').value == 1">Centimeters</span>
+                <span *ngIf="formdata.get('unit').value == 2">Feets</span>
+            </mat-label>
+            <input type="number" matInput formControlName="height" step=".01">
+        </mat-form-field>
+        <mat-form-field class="input-full-width">
+            <mat-label>Enter You Weight in 
+                <span *ngIf="formdata.get('unit').value == 1">Kilograms</span>
+                <span *ngIf="formdata.get('unit').value == 2">Lbs</span>
+            </mat-label>
+            <input type="number" matInput formControlName="weight">
+        </mat-form-field>
+    </div>
+</form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button *ngIf="!data.edit" (click)="noThanks()">No Thanks</button>
+  <button mat-raised-button *ngIf="data.edit"  (click)="cancel()">Cancel</button>
+  <button mat-raised-button [disabled]="!formdata.valid" 
+          *ngIf="formdata.get('unit').value" [mat-dialog-close]="formdata.value" 
+          cdkFocusInitial class="confirm-yes-btn">Continue</button>
+</div>

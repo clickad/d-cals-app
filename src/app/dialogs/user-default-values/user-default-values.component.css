@@ -1,0 +1,28 @@
+.mat-dialog-actions {
+    justify-content: center;
+}
+
+.unit-radio,
+.dialog-form-wrapper {
+    text-align: center;
+}
+
+@media screen and (max-width: 890px) {
+
+    .dialog-form-wrapper {
+        font-size: 14px;
+    }
+    .mat-dialog-title {
+        font-size: 18px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .dialog-form-wrapper {
+        font-size: 12px;
+    }
+    .mat-dialog-title {
+        font-size: 16px;
+    }
+}

@@ -1,19 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
+export interface UserData {
+  age: string;
+  height: string;
+  weight: string;
+  gender: string;
+}
+
 @Component({
-  selector: 'app-calories-calculator',
-  templateUrl: './calories-calculator.component.html',
-  styleUrls: ['./calories-calculator.component.css']
+  selector: 'app-user-default-values',
+  templateUrl: './user-default-values.component.html',
+  styleUrls: ['./user-default-values.component.css']
 })
-export class CaloriesCalculatorComponent implements OnInit {
 
-  public title: string = "Calories Calculator";
-  public subtitle: string = "Can be used to estimate the number of calories a person needs to consume each day.";
+export class UserDefaultValuesComponent implements OnInit {
+
   public formdata: any;
-  public result: any;
 
-  constructor() { }
+  public editDialog: boolean;
+
+  constructor(
+    public dialogRef: MatDialogRef<UserDefaultValuesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: UserData
+  ) { }
 
   ngOnInit(): void {
     this.formdata = new FormGroup({
@@ -41,26 +52,37 @@ export class CaloriesCalculatorComponent implements OnInit {
         ])
       )
     });
+
     if(localStorage.hasOwnProperty("userData")){
       this.setData();
     }
   }
-  calculate(data): void {
-    //For men:	BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) + 5
-    //For women: BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age(y) - 161
 
-    let height = data.unit == 1 ? data.height : (data.height*30.48).toFixed(1);
-    let weight = data.unit == 1 ? data.weight : (data.weight*0.45359237).toFixed(1);
+  noThanks(): void {
+    this.dialogRef.close({
+      unit: 0,
+      age: 0,
+      height: 0,
+      weight: 0,
+      gender: ""
+    });
+  }
 
-    if (data.gender === "1") {
-      this.result = Math.round(
-        (10 * weight + 6.25 * height - 5 * data.age) * 1.2 + 5
-      );
-    } else {
-      this.result = Math.round(
-        (10 * weight + 6.25 * height - 5 * data.age) * 1.2 - 161
-      );
-    }
+  cancel(){
+    let data = localStorage.hasOwnProperty("userData") ? JSON.parse(localStorage.getItem('userData')) : {
+      unit: 0,
+      age: 0,
+      height: 0,
+      weight: 0,
+      gender: ""
+    };
+    this.dialogRef.close({
+      unit: data.unit,
+      age: data.age,
+      height: data.height,
+      weight: data.weight,
+      gender: data.gender
+    });
   }
 
   resetForm(){
@@ -68,7 +90,7 @@ export class CaloriesCalculatorComponent implements OnInit {
       weight: "",
       height: ""
     });
-    this.formdata.markAsUntouched()
+    this.formdata.markAsUntouched();
   }
 
   setData(){
@@ -78,7 +100,7 @@ export class CaloriesCalculatorComponent implements OnInit {
       age: data.age,
       weight: data.weight,
       height: data.height,
-      gender: data.gender == "Male" ? "1" : "2"
+      gender: data.gender
     });
   }
 

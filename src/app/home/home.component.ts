@@ -1,16 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-  icon: string;
-  font_color: string;
-  description: string;
-  link: string;
-  desc_color: string;
-}
+import { IHomeNav } from '../interfaces/ihome-nav';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +8,7 @@ export interface Tile {
 })
 export class HomeComponent implements OnInit {
 
-  tiles: Tile[] = [
+  public tiles: IHomeNav[] = [
     {
       text: 'Your Day', 
       link: 'your-day',

@@ -33,6 +33,10 @@ export class BmiCalculatorComponent implements OnInit {
         ])
       )
     });
+
+    if(localStorage.hasOwnProperty("userData")){
+      this.setData();
+    }
   }
   calculate(data): void {
     let height = data.unit == 1 ? data.height : (data.height*30.48).toFixed(1);
@@ -46,6 +50,15 @@ export class BmiCalculatorComponent implements OnInit {
       height: ""
     });
     this.formdata.markAsUntouched()
+  }
+
+  setData(){
+    let data = JSON.parse(localStorage.getItem('userData'));
+    this.formdata.setValue({
+      unit: data.unit,
+      weight: data.weight,
+      height: data.height
+    });
   }
 
 }
